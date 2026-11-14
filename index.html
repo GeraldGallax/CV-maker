@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="sw">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CV Maker - Tengeneza CV Bora</title>
+<style>
+*{box-sizing:border-box;font-family:Arial,sans-serif}
+body{margin:0;background:#f1f5f9;padding:12px}
+.header{background:#0f172a;color:#fff;padding:18px;border-radius:12px;text-align:center}
+.header h1{margin:0;font-size:22px}
+.header p{margin:5px 0 0;opacity:.8;font-size:14px}
+.card{background:#fff;padding:16px;border-radius:12px;margin-top:12px;box-shadow:0 2px 8px rgba(0,0,0,.08)}
+.card h2{font-size:16px;margin:0 0 12px;color:#0f172a;border-left:4px solid #facc15;padding-left:8px}
+label{font-size:13px;font-weight:bold;display:block;margin-top:10px}
+input,textarea,select{width:100%;padding:11px;border:1px solid #cbd5e1;border-radius:8px;margin-top:4px;font-size:14px}
+textarea{height:60px}
+button{width:100%;padding:14px;border:none;border-radius:10px;font-weight:bold;font-size:16px;cursor:pointer;margin-top:10px}
+.btn-blue{background:#2563eb;color:#fff}
+.btn-green{background:#16a34a;color:#fff}
+.btn-red{background:#dc2626;color:#fff}
+#cvPreview{background:#fff;padding:20px;border-radius:12px;margin-top:12px;display:none}
+.cv-name{font-size:24px;font-weight:bold;text-align:center;margin:0}
+.cv-title{text-align:center;color:#2563eb;font-weight:bold;margin:4px 0}
+.cv-contact{text-align:center;font-size:13px;color:#555}
+.cv-sec{font-size:14px;font-weight:bold;background:#0f172a;color:#fff;padding:6px 10px;margin-top:16px;border-radius:6px}
+.cv-text{font-size:14px;line-height:1.5;white-space:pre-wrap}
+.pay-box{background:#fef9c3;border:2px dashed #eab308;padding:14px;border-radius:10px;text-align:center;margin-top:12px}
+.pay-option{background:#fff;border:2px solid #e5e7eb;border-radius:10px;padding:12px;margin-top:10px;text-align:left;cursor:pointer}
+.pay-option.selected{border-color:#16a34a;background:#f0fdf4}
+.pay-option b{font-size:16px}
+@media print{body *{visibility:hidden}#cvPreview,#cvPreview *{visibility:visible}#cvPreview{position:absolute;left:0;top:0;width:100%}}
+</style>
+</head>
+<body>
+
+<div class="header">
+<h1>CV MAKER 🇹🇿</h1>
+<p>Tengeneza CV Bora kwa Dakika 5 - Bila Stress</p>
+</div>
+
+<!-- 1. TAARIFA BINAFSI -->
+<div class="card">
+<h2>1. Taarifa Binafsi</h2>
+<label>Jina Kamili *</label><input id="jina" placeholder="Mf: Suleimani Karisha">
+<label>Kazi Unayoomba *</label><input id="kazi" placeholder="Mf: Mhasibu / Muuzaji / Dereva">
+<label>Namba ya Simu *</label><input id="simu" placeholder="Mf: 0746 796 744">
+<label>Email</label><input id="email" placeholder="Mf: jina@gmail.com">
+<label>Mahali Unapoishi *</label><input id="mji" placeholder="Mf: Mwanza">
+</div>
+
+<!-- 2. MUHTASARI -->
+<div class="card">
+<h2>2. Muhtasari Mfupi - Kuhusu Wewe</h2>
+<label>Andika sentensi 2 kuhusu wewe (mfumo atakusaidia kama ukiacha wazi)</label>
+<textarea id="muhtasari" placeholder="Mf: Nina uzoefu wa miaka 2 kwenye mauzo, ni mchapakazi na mwenye nidhamu..."></textarea>
+</div>
+
+<!-- 3. ELIMU -->
+<div class="card">
+<h2>3. Elimu</h2>
+<label>Shule / Chuo</label><input id="shule" placeholder="Mf: Chuo Kikuu cha Dar es Salaam">
+<label>Umesoma Nini?</label><input id="masomo" placeholder="Mf: Diploma ya Uhasibu">
+<label>Mwaka Ulianza - Ulimailiza</label><input id="miakaElimu" placeholder="Mf: 2020 - 2023">
+</div>
+
+<!-- 4. UZOEFU -->
+<div class="card">
+<h2>4. Uzoefu wa Kazi (Kama Huna, Acha Wazi)</h2>
+<label>Kampuni / Sehemu</label><input id="kampuni" placeholder="Mf: Duka la Simu Mwanza">
+<label>Kazi Uliyokuwa Unafanya</label><input id="cheo" placeholder="Mf: Muuzaji">
+<label>Mwaka Ulianza - Uliisha</label><input id="miakaKazi" placeholder="Mf: 2022 - 2024">
+<label>Ulikuwa Unafanya Nini Hapo?</label><textarea id="majukumu" placeholder="Mf: Kuuza, kuweka hesabu, kuhudumia wateja..."></textarea>
+</div>
+
+<!-- 5. UJUZI -->
+<div class="card">
+<h2>5. Ujuzi - Unajua Nini?</h2>
+<label>Chagua / Andika (tenganisha kwa koma)</label><input id="ujuzi" placeholder="Mf: Kompyuta, Kiingereza, Kuuza, Kuendesha Gari">
+</div>
+
+<!-- 6. VYETI -->
+<div class="card">
+<h2>6. Vyeti na Mafunzo (Kama Unavyo)</h2>
+<label>Vyeti</label><input id="vyeti" placeholder="Mf: Cheti cha Kompyuta, Mafunzo ya Ujasiriamali">
+</div>
+
+<!-- 7. LUGHA -->
+<div class="card">
+<h2>7. Lugha</h2>
+<label>Kiswahili</label>
+<select id="swahili"><option>Vizuri Sana</option><option>Kiasi</option><option>Kidogo</option></select>
+<label>Kiingereza</label>
+<select id="english"><option>Kiasi</option><option>Vizuri Sana</option><option>Kidogo</option></select>
+</div>
+
+<!-- 8. MAREJEO -->
+<div class="card">
+<h2>8. Marejeo - Watu 2</h2>
+<label>Mtu wa 1 - Jina</label><input id="ref1" placeholder="Mf: Mwalimu John">
+<label>Mtu wa 1 - Namba / Yeye ni Nani?</label><input id="ref1b" placeholder="Mf: 0755 000 000 - Mwalimu Wangu">
+<label>Mtu wa 2 - Jina</label><input id="ref2" placeholder="Mf: Bosi Peter">
+<label>Mtu wa 2 - Namba / Yeye ni Nani?</label><input id="ref2b" placeholder="Mf: 0765 000 000 - Bosi Wangu wa Zamani">
+</div>
+
+<button class="btn-blue" onclick="tengeneza()">ONA CV YANGU 👁️</button>
+
+<div id="cvPreview"></div>
+
+<div id="payArea" style="display:none">
+<div class="pay-box">
+<b style="font-size:18px">Kupakua CV 1 = 2000 Tsh</b><br>
+<span style="font-size:13px">Chagua njia ya kulipa, lipa, kisha weka Namba ya Muam
