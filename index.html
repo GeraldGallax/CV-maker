@@ -3,240 +3,189 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>CV MAKER 🇹🇿</title>
+<title>WORLD CV MAKER 🌍</title>
 <style>
-*{box-sizing:border-box;font-family:Arial,sans-serif}
-body{background:#f1f5f9;margin:0;padding:10px}
-.container{max-width:650px;margin:auto}
-.header{background:#0f172a;color:#fff;text-align:center;padding:20px;border-radius:12px}
-.header h1{margin:0;font-size:26px}
-.header p{margin:5px 0 0;color:#cbd5e1}
-.card{background:#fff;padding:16px;border-radius:12px;margin-top:12px;box-shadow:0 2px 8px rgba(0,0,0,.06)}
-.card h2{font-size:18px;margin:0 0 12px;border-left:5px solid #facc15;padding-left:8px;color:#0f172a}
-label{font-weight:bold;font-size:14px;display:block;margin:12px 0 5px}
-input,textarea,select{width:100%;padding:12px;border:1px solid #cbd5e1;border-radius:10px;font-size:15px;outline:none}
-input:focus,textarea:focus{border-color:#2563eb}
-textarea{min-height:70px;resize:vertical}
-.btn-main{width:100%;background:#2563eb;color:#fff;border:none;padding:15px;font-size:18px;font-weight:bold;border-radius:12px;margin-top:15px;cursor:pointer}
-.btn-main:active{transform:scale(.98)}
-.btn-row{display:flex;gap:10px;margin-top:10px}
-.btn-print{flex:1;background:#16a34a;color:#fff;border:none;padding:12px;border-radius:10px;font-weight:bold;cursor:pointer}
-.btn-clear{flex:1;background:#ef4444;color:#fff;border:none;padding:12px;border-radius:10px;font-weight:bold;cursor:pointer}
-#cvPreview{display:none;background:#fff;padding:22px;border-radius:12px;margin-top:15px;border:2px solid #0f172a}
-.cv-top{border-bottom:3px solid #facc15;padding-bottom:10px}
-.cv-top h2{font-size:26px;margin:0;text-transform:uppercase}
-.cv-top p{margin:6px 0 0;color:#475569;font-size:14px}
-.cv-sec{margin-top:16px}
-.cv-sec h3{font-size:16px;margin:0 0 6px;color:#0f172a;border-bottom:1px solid #e2e8f0;padding-bottom:4px}
-.cv-sec p,.cv-sec li{font-size:14.5px;line-height:1.6;color:#334155}
+*{box-sizing:border-box;font-family:Arial,Helvetica,sans-serif}
+body{background:#eef2f7;margin:0;padding:10px}
+.container{max-width:750px;margin:auto}
+.header{background:#111827;color:#fff;text-align:center;padding:22px;border-radius:14px}
+.header h1{margin:0;font-size:26px}.header p{color:#cbd5e1;margin:6px 0 0}
+.card{background:#fff;padding:16px;border-radius:14px;margin-top:12px;box-shadow:0 2px 10px rgba(0,0,0,.06)}
+.card h2{font-size:17px;margin:0 0 10px;border-left:5px solid #2563eb;padding-left:8px}
+label{font-weight:bold;font-size:13.5px;display:block;margin:11px 0 5px}
+input,textarea,select{width:100%;padding:12px;border:1px solid #cbd5e1;border-radius:10px;font-size:14.5px;outline:none}
+textarea{min-height:68px;resize:vertical}
+.row{display:flex;gap:10px}.row>div{flex:1}
+.btn-add{background:#eff6ff;color:#1d4ed8;border:1px dashed #3b82f6;padding:10px;width:100%;border-radius:10px;font-weight:bold;margin-top:10px;cursor:pointer}
+.btn-del{background:#fee2e2;color:#dc2626;border:none;padding:5px 10px;border-radius:8px;font-size:12px;cursor:pointer;float:right}
+.btn-main{width:100%;background:#111827;color:#fff;border:none;padding:15px;font-size:18px;font-weight:bold;border-radius:12px;margin-top:15px;cursor:pointer}
+.btn-row{display:flex;gap:8px;margin-top:10px;flex-wrap:wrap}.btn-row button{flex:1;min-width:130px;border:none;padding:12px;border-radius:10px;font-weight:bold;cursor:pointer;color:#fff}
+.btn-print{background:#16a34a}.btn-word{background:#7c3aed}.btn-save{background:#0ea5e9}.btn-clear{background:#ef4444}.btn-ats{background:#f59e0b;color:#111!important}
+.tpl-box{display:flex;gap:8px}.tpl-box button{flex:1;padding:10px;border:2px solid #cbd5e1;border-radius:10px;cursor:pointer;font-weight:bold;background:#fff}.tpl-box button.active{border-color:#111827;background:#f8fafc}
+#cvPreview{display:none;background:#fff;padding:28px;border-radius:8px;margin-top:15px;border:1px solid #ddd}
+.cv-name{font-size:30px;margin:0;text-transform:uppercase;letter-spacing:.5px}
+.cv-title{font-size:17px;color:#2563eb;font-weight:bold;margin:4px 0}
+.cv-contact{font-size:13.5px;color:#475569;line-height:1.6}
+.cv-sec{margin-top:18px}.cv-sec h3{font-size:14px;letter-spacing:1.2px;text-transform:uppercase;border-bottom:2px solid #111827;padding-bottom:5px;margin:0 0 8px}
+.cv-sec p,.cv-sec li{font-size:14.5px;line-height:1.65;color:#1f2937}
+.cv-item{margin-bottom:12px}.cv-item b{font-size:15px}.cv-meta{color:#6b7280;font-size:13.5px}
 ul{padding-left:18px;margin:6px 0}
-@media print{body{background:#fff}.container{max-width:100%} .header,.card,.btn-main,.btn-row{display:none!important} #cvPreview{display:block!important;border:none;margin:0;padding:0}}
+.ats-box{background:#fffbeb;border:1px solid #facc15;padding:12px;border-radius:10px;margin-top:12px;font-size:14px;display:none}
+.small{font-size:12px;color:#64748b;text-align:center;margin-top:8px}
+@media print{body{background:#fff}.container{max-width:100%}.header,.card,.btn-main,.btn-row,.ats-box{display:none!important}#cvPreview{display:block!important;border:none;margin:0;padding:0}}
+.tpl-modern .cv-name{color:#1d4ed8}.tpl-modern .cv-sec h3{border-color:#1d4ed8;color:#1d4ed8}
+.tpl-elegant .cv-name{color:#7c2d12}.tpl-elegant .cv-sec h3{border-color:#b45309;color:#92400e}
 </style>
 </head>
 <body>
 <div class="container">
-<div class="header">
-<h1>CV MAKER 🇹🇿</h1>
-<p>Tengeneza CV Bora kwa Dakika 5 - Bila Stress</p>
-</div>
+<div class="header"><h1>WORLD CV MAKER 🌍</h1><p>CV ya Kimataifa - ATS Friendly - Inakubalika Popote Duniani</p></div>
 
 <form id="cvForm" onsubmit="return false;">
-<div class="card">
-<h2>1. Taarifa Binafsi</h2>
-<label>Jina Kamili *</label>
-<input id="jina" placeholder="Mf: Jackson Mugeta">
-<label>Kazi Unayoomba *</label>
-<input id="kazi" placeholder="Mf: Muuzaji / Mhasibu / IT">
-<label>Namba ya Simu *</label>
-<input id="simu" placeholder="Mf: 0788000000">
-<label>Email</label>
-<input id="email" placeholder="Mf: jackson@gmail.com">
-<label>Mahali Unapoishi *</label>
-<input id="mahali" placeholder="Mf: Tanga">
+<div class="card"><h2>🎨 Chagua Template - World Standard</h2><div class="tpl-box">
+<button type="button" id="t1" class="active" onclick="setTpl('classic')">Classic - USA / UK</button>
+<button type="button" id="t2" onclick="setTpl('modern')">Modern - Tech / Dubai</button>
+<button type="button" id="t3" onclick="setTpl('elegant')">Elegant - Europe</button>
+</div><p class="small" style="text-align:left;">Hakuna Picha, Hakuna Umri, Hakuna Jinsia - Hii ndiyo standard ya dunia ili ATS isikukatae.</p></div>
+
+<div class="card"><h2>1. Contact Information</h2>
+<label>Full Name *</label><input id="jina" placeholder="e.g. Jackson Mugeta">
+<label>Professional Title *</label><input id="kazi" placeholder="e.g. Sales Associate / Accountant / Software Developer">
+<div class="row"><div><label>City, Country *</label><input id="mahali" placeholder="e.g. Dar es Salaam, Tanzania"></div><div><label>Phone *</label><input id="simu" placeholder="+255 788 000 000"></div></div>
+<div class="row"><div><label>Email *</label><input id="email" placeholder="jackson@gmail.com"></div><div><label>LinkedIn</label><input id="linkedin" placeholder="linkedin.com/in/jacksonmugeta"></div></div>
+<div class="row"><div><label>Portfolio / Website</label><input id="website" placeholder="www.jackson.com"></div><div><label>Work Type</label><select id="workType"><option>Full-time</option><option>Part-time</option><option>Remote</option><option>Internship</option><option>Freelance</option></select></div></div>
+<label>Open to Relocation?</label><select id="relocate"><option>Yes - Open to Relocation</option><option>No - Local Only</option><option>Remote Only</option></select>
 </div>
 
-<div class="card">
-<h2>2. Muhtasari Mfupi - Kuhusu Wewe</h2>
-<label>Andika sentensi 2 kuhusu wewe (mfumo atakusaidia kama ukiacha wazi)</label>
-<textarea id="muhtasari" placeholder="Mf: Nina uzoefu wa miaka 2 kwenye mauzo, ni mchapakazi na mwenye nidhamu..."></textarea>
-</div>
+<div class="card"><h2>2. Professional Summary</h2><label>Andika muhtasari kwa Kiingereza - Mfumo atakusaidia kama ukiacha wazi</label><textarea id="muhtasari" placeholder="e.g. Results-driven Sales Associate with 2+ years of experience..."></textarea></div>
 
-<div class="card">
-<h2>3. Elimu</h2>
-<label>Shule / Chuo</label>
-<input id="shule" placeholder="Mf: Chuo cha ...">
-<label>Umesoma Nini?</label>
-<input id="elimu" placeholder="Mf: Degree Computer">
-<label>Mwaka Ulianza - Ulimaliza</label>
-<input id="mwakaElimu" placeholder="Mf: 2020-2023">
-</div>
+<div class="card"><h2>3. Core Skills - Ujuzi Mkuu</h2><label>Andika ujuzi 6-10, tenganisha kwa koma. Usianze na Kompyuta tu.</label><input id="ujuzi" placeholder="e.g. Sales, Negotiation, Customer Service, MS Excel, Communication" value="Communication, Customer Service, MS Excel, Teamwork"></div>
 
-<div class="card">
-<h2>4. Uzoefu wa Kazi (Kama Huna, Acha Wazi)</h2>
-<label>Kampuni / Sehemu</label>
-<input id="kampuni" placeholder="Mf: Duka la Simu Mwanza">
-<label>Kazi Uliyokuwa Unafanya</label>
-<input id="kaziUzoefu" placeholder="Mf: Muuzaji">
-<label>Mwaka Ulianza - Uliisha</label>
-<input id="mwakaKazi" placeholder="Mf: 2022 - 2024">
-<label>Ulikuwa Unafanya Nini Hapo?</label>
-<textarea id="maelezoKazi" placeholder="Mf: Kuuza, kuweka hesabu, kuhudumia wateja..."></textarea>
-</div>
+<div class="card"><h2>4. Work Experience - Tumia namba %</h2><div id="expList"></div><button type="button" class="btn-add" onclick="addExp()">+ Add Another Job</button>
+<p class="small" style="text-align:left;">Mfano mzuri: Increased sales by 30% - Sio: I was selling. Tumia namba kila wakati.</p></div>
 
-<div class="card">
-<h2>5. Ujuzi - Unajua Nini?</h2>
-<label>Chagua / Andika (tenganisha kwa koma)</label>
-<input id="ujuzi" placeholder="Mf: Kompyuta, Kuuza, Hesabu" value="Kompyuta">
-</div>
+<div class="card"><h2>5. Education</h2><div id="eduList"></div><button type="button" class="btn-add" onclick="addEdu()">+ Add Another Education</button></div>
 
-<div class="card">
-<h2>6. Vyeti na Mafunzo (Kama Unavyo)</h2>
-<label>Vyeti</label>
-<input id="vyeti" placeholder="Mf: Cheti cha kompyuta">
-</div>
+<div class="card"><h2>6. Certifications & Licenses</h2><label>Vyeti vya kimataifa - kila kimoja kwa mstari mpya, na mwaka + namba kama unayo</label><textarea id="vyeti" placeholder="e.g. Google Digital Marketing Certificate - 2024&#10;Driving License Class B - 2023"></textarea></div>
 
-<div class="card">
-<h2>7. Lugha</h2>
-<label>Kiswahili</label>
-<select id="swahili">
-<option>Vizuri Sana</option><option>Vizuri</option><option>Kiasi</option><option>Kidogo</option>
-</select>
-<label>Kiingereza</label>
-<select id="english">
-<option>Kiasi</option><option>Vizuri Sana</option><option>Vizuri</option><option>Kidogo</option>
-</select>
-</div>
+<div class="card"><h2>7. Languages - Kiwango cha Dunia CEFR</h2>
+<div class="row"><div><label>Swahili</label><select id="swahili"><option>Native - C2</option><option>Fluent - C1</option><option>Intermediate - B2</option></select></div><div><label>English</label><select id="english"><option>Intermediate - B2</option><option>Fluent - C1</option><option>Advanced - C2</option><option>Basic - A2</option></select></div></div>
+<label>Other Languages</label><input id="lughaNyingine" placeholder="e.g. French - Basic A2, Chinese - Beginner A1"></div>
 
-<div class="card">
-<h2>8. Marejeo - Watu 2</h2>
-<label>Mtu wa 1 - Jina</label>
-<input id="ref1Jina" placeholder="Mf: Mwalimu ...">
-<label>Mtu wa 1 - Namba / Yeye ni Nani?</label>
-<input id="ref1Namba" placeholder="Mf: 0746797687 mwalimu">
-<label>Mtu wa 2 - Jina</label>
-<input id="ref2Jina" placeholder="Mf: ...">
-<label>Mtu wa 2 - Namba / Yeye ni Nani?</label>
-<input id="ref2Namba" placeholder="Mf: 0788991919 mwalimu">
-</div>
+<div class="card"><h2>8. Projects</h2><label>Miradi uliyofanya - kila mradi: Jina, nini ulifanya, matokeo</label><textarea id="miradi" placeholder="e.g. Built a website for a local shop - Increased customers by 20%"></textarea></div>
 
-<button type="button" class="btn-main" onclick="tengenezaCV()">ONA CV YANGU 👁️</button>
+<div class="card"><h2>9. Awards & Achievements</h2><label>Tuzo / Mafanikio - kila moja kwa mstari mpya</label><textarea id="mafanikio" placeholder="e.g. Best Salesperson of the Year 2024&#10;Top Student Award"></textarea></div>
 
+<div class="card"><h2>10. Publications / Research (Kama Unazo)</h2><label>Makala, utafiti, blog uliyoandika</label><textarea id="publications" placeholder="e.g. Article: How to Grow Small Business in Tanzania - 2024"></textarea></div>
+
+<div class="card"><h2>11. Volunteer & Professional Memberships</h2><label>Kujitolea na Uanachama wa kitaalamu</label><textarea id="volunteer" placeholder="e.g. Volunteer Teacher - 2022-2023&#10;Member - Tanzania Sales Association"></textarea></div>
+
+<div class="card"><h2>12. Interests (Hiari - Mstari 1 tu)</h2><input id="hobbi" placeholder="e.g. Reading, Football, Technology"></div>
+
+<div class="card"><h2>13. References</h2><p class="small" style="text-align:left;">Duniani huandikwa "Available upon request" kama huna. Usiweke namba za watu bila ruhusa yao.</p>
+<select id="refMode"><option>Available upon request</option><option>Show my 2 references</option></select>
+<div id="refFields" style="display:none;">
+<label>Reference 1 - Name + Title + Email</label><input id="ref1" placeholder="e.g. Mr. John Doe, Manager, john@company.com">
+<label>Reference 2 - Name + Title + Email</label><input id="ref2" placeholder="e.g. Ms. Jane Smith, Teacher, jane@school.com">
+</div></div>
+
+<button type="button" class="btn-main" onclick="tengenezaCV()">GENERATE MY WORLD CV 👁️</button>
+<div id="atsBox" class="ats-box"></div>
 <div id="cvPreview"></div>
 <div class="btn-row" id="actionBtns" style="display:none;">
-<button type="button" class="btn-print" onclick="window.print()">🖨️ Pakua / Print PDF</button>
-<button type="button" class="btn-clear" onclick="futaZote()">🗑️ Futa Zote</button>
+<button type="button" class="btn-print" onclick="window.print()">🖨️ Print / PDF</button>
+<button type="button" class="btn-word" onclick="pakuaWord()">📄 Download WORD</button>
+<button type="button" class="btn-save" onclick="hifadhi()">💾 Save</button>
+<button type="button" class="btn-clear" onclick="futaZote()">🗑️ Clear All</button>
 </div>
+<button type="button" class="btn-row btn-ats" style="width:100%;margin-top:10px;padding:12px;border-radius:10px;font-weight:bold;cursor:pointer;border:none;" onclick="checkATS()">✅ Check My CV Score - ATS Check</button>
 </form>
 </div>
 
 <script>
-function get(id){
-  var el = document.getElementById(id);
-  return el ? el.value.trim() : "";
+var tpl='classic';
+function setTpl(t){tpl=t;document.getElementById('t1').className=t==='classic'?'active':'';document.getElementById('t2').className=t==='modern'?'active':'';document.getElementById('t3').className=t==='elegant'?'active':'';var p=document.getElementById('cvPreview');p.className=t==='modern'?'tpl-modern':t==='elegant'?'tpl-elegant':'';p.style.display=p.innerHTML?'block':'none';}
+function get(id){var e=document.getElementById(id);return e?e.value.trim():'';}
+function esc(t){return String(t||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+document.getElementById('refMode').addEventListener('change',function(){document.getElementById('refFields').style.display=this.value==='Show my 2 references'?'block':'none';});
+function addEdu(shule,degree,mwaka,grade){
+  var d=document.createElement('div');d.className='edu-item';d.style.cssText='border:1px solid #e2e8f0;padding:10px;border-radius:10px;margin-top:10px;';
+  d.innerHTML='<button type="button" class="btn-del" onclick="this.parentElement.remove()">Delete ✕</button><label>School / University</label><input class="e-shule" placeholder="e.g. University of Dar es Salaam" value="'+esc(shule||'')+'"><label>Degree / Course</label><input class="e-degree" placeholder="e.g. Bachelor of Business Administration" value="'+esc(degree||'')+'"><div class="row"><div><label>Years</label><input class="e-mwaka" placeholder="2020 - 2023" value="'+esc(mwaka||'')+'"></div><div><label>Grade / GPA / Division</label><input class="e-grade" placeholder="e.g. GPA 3.8 / Division I" value="'+esc(grade||'')+'"></div></div>';
+  document.getElementById('eduList').appendChild(d);
 }
-function escapeHtml(t){
-  return t.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
+function addExp(kampuni,title,mwaka,maelezo){
+  var d=document.createElement('div');d.className='exp-item';d.style.cssText='border:1px solid #e2e8f0;padding:10px;border-radius:10px;margin-top:10px;';
+  d.innerHTML='<button type="button" class="btn-del" onclick="this.parentElement.remove()">Delete ✕</button><label>Company</label><input class="x-kampuni" placeholder="e.g. ABC Company Ltd" value="'+esc(kampuni||'')+'"><label>Job Title</label><input class="x-title" placeholder="e.g. Sales Associate" value="'+esc(title||'')+'"><label>Years + City</label><input class="x-mwaka" placeholder="e.g. Jan 2022 - Dec 2024 | Dar es Salaam" value="'+esc(mwaka||'')+'"><label>What did you achieve? Use numbers % - One per line</label><textarea class="x-maelezo" placeholder="Increased sales by 30%&#10;Served 50+ customers daily">'+esc(maelezo||'')+'</textarea>';
+  document.getElementById('expList').appendChild(d);
+}
+function listToUl(text){
+  var lines=text.split('\n').filter(function(x){return x.trim()}); if(!lines.length) return '';
+  var out='<ul>'; lines.forEach(function(l){out+='<li>'+esc(l.trim())+'</li>'}); out+='</ul>'; return out;
 }
 function tengenezaCV(){
   try{
-    var jina = get('jina');
-    var kazi = get('kazi');
-    var simu = get('simu');
-    var email = get('email');
-    var mahali = get('mahali');
-
-    if(!jina || !kazi || !simu || !mahali){
-      alert("Tafadhali jaza: Jina Kamili, Kazi Unayoomba, Namba ya Simu na Mahali Unapoishi");
-      document.getElementById('jina').focus();
-      return;
-    }
-
-    var muhtasari = get('muhtasari');
-    if(!muhtasari){
-      muhtasari = "Mimi ni " + escapeHtml(jina) + ", ninaomba nafasi ya " + escapeHtml(kazi) + ". Ni mtu mchapakazi, mwenye nidhamu, anayependa kujifunza na kufanya kazi kwa bidii ili kufikia malengo ya kampuni.";
-    } else {
-      muhtasari = escapeHtml(muhtasari);
-    }
-
-    var shule = get('shule');
-    var elimu = get('elimu');
-    var mwakaElimu = get('mwakaElimu');
-    var kampuni = get('kampuni');
-    var kaziUzoefu = get('kaziUzoefu');
-    var mwakaKazi = get('mwakaKazi');
-    var maelezoKazi = get('maelezoKazi');
-    var ujuzi = get('ujuzi');
-    var vyeti = get('vyeti');
-    var swahili = get('swahili');
-    var english = get('english');
-    var ref1Jina = get('ref1Jina');
-    var ref1Namba = get('ref1Namba');
-    var ref2Jina = get('ref2Jina');
-    var ref2Namba = get('ref2Namba');
-
-    var ujuziHtml = "";
-    if(ujuzi){
-      var parts = ujuzi.split(",");
-      ujuziHtml = "<ul>";
-      for(var i=0;i<parts.length;i++){
-        if(parts[i].trim()) ujuziHtml += "<li>" + escapeHtml(parts[i].trim()) + "</li>";
-      }
-      ujuziHtml += "</ul>";
-    } else {
-      ujuziHtml = "<p>Kompyuta, Mawasiliano, Kufanya kazi kwa timu</p>";
-    }
-
-    var elimuHtml = "";
-    if(shule || elimu){
-      elimuHtml = "<div class='cv-sec'><h3>ELIMU</h3><p><b>" + escapeHtml(elimu || "Elimu") + "</b><br>" + escapeHtml(shule) + " | " + escapeHtml(mwakaElimu) + "</p></div>";
-    }
-
-    var uzoefuHtml = "";
-    if(kampuni || kaziUzoefu){
-      uzoefuHtml = "<div class='cv-sec'><h3>UZOEFU WA KAZI</h3><p><b>" + escapeHtml(kaziUzoefu) + "</b> - " + escapeHtml(kampuni) + " (" + escapeHtml(mwakaKazi) + ")<br>" + escapeHtml(maelezoKazi) + "</p></div>";
-    }
-
-    var vyetiHtml = "";
-    if(vyeti){
-      vyetiHtml = "<div class='cv-sec'><h3>VYETI NA MAFUNZO</h3><p>" + escapeHtml(vyeti) + "</p></div>";
-    }
-
-    var marejeoHtml = "";
-    if(ref1Jina || ref2Jina){
-      marejeoHtml = "<div class='cv-sec'><h3>MAREJEO</h3>";
-      if(ref1Jina) marejeoHtml += "<p><b>" + escapeHtml(ref1Jina) + "</b><br>" + escapeHtml(ref1Namba) + "</p>";
-      if(ref2Jina) marejeoHtml += "<p><b>" + escapeHtml(ref2Jina) + "</b><br>" + escapeHtml(ref2Namba) + "</p>";
-      marejeoHtml += "</div>";
-    }
-
-    var html = "";
-    html += "<div class='cv-top'><h2>" + escapeHtml(jina) + "</h2><p><b>" + escapeHtml(kazi) + "</b><br>" + escapeHtml(simu) + (email ? " | " + escapeHtml(email) : "") + " | " + escapeHtml(mahali) + "</p></div>";
-    html += "<div class='cv-sec'><h3>KUHUSU MIMI</h3><p>" + muhtasari + "</p></div>";
-    html += elimuHtml;
-    html += uzoefuHtml;
-    html += "<div class='cv-sec'><h3>UJUZI</h3>" + ujuziHtml + "</div>";
-    html += vyetiHtml;
-    html += "<div class='cv-sec'><h3>LUGHA</h3><p>Kiswahili: " + escapeHtml(swahili) + "<br>Kiingereza: " + escapeHtml(english) + "</p></div>";
-    html += marejeoHtml;
-
-    var preview = document.getElementById('cvPreview');
-    preview.innerHTML = html;
-    preview.style.display = "block";
-    document.getElementById('actionBtns').style.display = "flex";
-    preview.scrollIntoView({behavior:'smooth'});
-  } catch(e){
-    alert("Kuna tatizo: " + e.message);
-    console.log(e);
-  }
+    var jina=get('jina'), kazi=get('kazi'), simu=get('simu'), mahali=get('mahali'), email=get('email');
+    if(!jina||!kazi||!simu||!mahali||!email){alert('Please fill: Full Name, Professional Title, Phone, City/Country and Email - These are required worldwide');document.getElementById('jina').focus();return;}
+    var muhtasari=get('muhtasari')|| (jina+' is a results-driven '+kazi+' with a strong work ethic, excellent communication skills, and a proven ability to deliver measurable results. Seeking to contribute value to a dynamic international team.');
+    var html='<div><div class="cv-name">'+esc(jina)+'</div><div class="cv-title">'+esc(kazi)+'</div><div class="cv-contact">'+esc(mahali)+' | '+esc(simu)+' | '+esc(email);
+    if(get('linkedin')) html+='<br>LinkedIn: '+esc(get('linkedin'));
+    if(get('website')) html+=' | Portfolio: '+esc(get('website'));
+    html+='<br>'+esc(get('workType'))+' | '+esc(get('relocate'))+'</div></div>';
+    html+='<div class="cv-sec"><h3>Professional Summary</h3><p>'+esc(muhtasari)+'</p></div>';
+    var ujuzi=get('ujuzi'); if(ujuzi){var u='<ul>'; ujuzi.split(',').forEach(function(s){if(s.trim()) u+='<li>'+esc(s.trim())+'</li>'}); u+='</ul>'; html+='<div class="cv-sec"><h3>Core Skills</h3>'+u+'</div>';}
+    var expHtml=''; document.querySelectorAll('.exp-item').forEach(function(it){
+      var k=it.querySelector('.x-kampuni').value.trim(), ti=it.querySelector('.x-title').value.trim(), m=it.querySelector('.x-mwaka').value.trim(), ma=it.querySelector('.x-maelezo').value.trim();
+      if(k||ti) expHtml+='<div class="cv-item"><b>'+esc(ti)+' | '+esc(k)+'</b><div class="cv-meta">'+esc(m)+'</div>'+listToUl(ma)+'</div>';
+    });
+    if(expHtml) html+='<div class="cv-sec"><h3>Work Experience</h3>'+expHtml+'</div>';
+    var eduHtml=''; document.querySelectorAll('.edu-item').forEach(function(it){
+      var s=it.querySelector('.e-shule').value.trim(), d=it.querySelector('.e-degree').value.trim(), m=it.querySelector('.e-mwaka').value.trim(), g=it.querySelector('.e-grade').value.trim();
+      if(s||d) eduHtml+='<div class="cv-item"><b>'+esc(d)+'</b><div class="cv-meta">'+esc(s)+' | '+esc(m)+(g?' | Grade: '+esc(g):'')+'</div></div>';
+    });
+    if(eduHtml) html+='<div class="cv-sec"><h3>Education</h3>'+eduHtml+'</div>';
+    var vyeti=listToUl(get('vyeti')); if(vyeti) html+='<div class="cv-sec"><h3>Certifications & Licenses</h3>'+vyeti+'</div>';
+    html+='<div class="cv-sec"><h3>Languages</h3><p>Swahili: '+esc(get('swahili'))+'<br>English: '+esc(get('english')); if(get('lughaNyingine')) html+='<br>Other: '+esc(get('lughaNyingine')); html+='</p></div>';
+    var proj=listToUl(get('miradi')); if(proj) html+='<div class="cv-sec"><h3>Projects</h3>'+proj+'</div>';
+    var aw=listToUl(get('mafanikio')); if(aw) html+='<div class="cv-sec"><h3>Awards & Achievements</h3>'+aw+'</div>';
+    var pub=listToUl(get('publications')); if(pub) html+='<div class="cv-sec"><h3>Publications</h3>'+pub+'</div>';
+    var vol=listToUl(get('volunteer')); if(vol) html+='<div class="cv-sec"><h3>Volunteer & Memberships</h3>'+vol+'</div>';
+    if(get('hobbi')) html+='<div class="cv-sec"><h3>Interests</h3><p>'+esc(get('hobbi'))+'</p></div>';
+    if(get('refMode')==='Available upon request'){html+='<div class="cv-sec"><h3>References</h3><p>Available upon request</p></div>';}
+    else{html+='<div class="cv-sec"><h3>References</h3><p>'+esc(get('ref1'))+'<br>'+esc(get('ref2'))+'</p></div>';}
+    var p=document.getElementById('cvPreview'); p.innerHTML=html; p.className=tpl==='modern'?'tpl-modern':tpl==='elegant'?'tpl-elegant':''; p.style.display='block';
+    document.getElementById('actionBtns').style.display='flex'; p.scrollIntoView({behavior:'smooth'});
+  }catch(e){alert('Error: '+e.message);}
+}
+function checkATS(){
+  var score=0, tips=[];
+  if(get('jina')&&get('email')&&get('simu')) score+=20; else tips.push('Weka Jina, Email na Simu - lazima kwa ATS');
+  if(get('muhtasari').length>80) score+=20; else tips.push('Muhtasari wako ni mfupi sana - andika maneno 50+');
+  if(get('ujuzi').split(',').length>=5) score+=20; else tips.push('Ongeza ujuzi 5+');
+  if(document.querySelectorAll('.exp-item').length>0 && get('miradi')) score+=20; else tips.push('Ongeza Uzoefu au Mradi mmoja');
+  if(get('linkedin')) score+=10; else tips.push('Weka LinkedIn - inaongeza point 10');
+  if(get('vyeti')) score+=10; else tips.push('Weka Cheti kimoja');
+  var box=document.getElementById('atsBox'); box.style.display='block';
+  box.innerHTML='<b>🌍 ATS Score Yako: '+score+'/100</b><br>'+(score>=80?'✅ CV yako iko tayari kutuma popote duniani!':'⚠️ Bado inahitaji maboresho:')+'<br>'+tips.join('<br>');
+  box.scrollIntoView({behavior:'smooth'});
+}
+function pakuaWord(){
+  var p=document.getElementById('cvPreview'); if(!p.innerHTML){alert('Kwanza bonyeza GENERATE MY WORLD CV');return;}
+  var blob=new Blob(['<html><head><meta charset="utf-8"></head><body>'+p.innerHTML+'</body></html>'],{type:'application/msword'});
+  var a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download=(get('jina')||'World-CV')+'.doc'; a.click();
+}
+function hifadhi(){
+  var data={}; ['jina','kazi','mahali','simu','email','linkedin','website','workType','relocate','muhtasari','ujuzi','vyeti','swahili','english','lughaNyingine','miradi','mafanikio','publications','volunteer','hobbi','refMode','ref1','ref2'].forEach(function(id){data[id]=get(id)});
+  var edu=[]; document.querySelectorAll('.edu-item').forEach(function(it){edu.push({s:it.querySelector('.e-shule').value,d:it.querySelector('.e-degree').value,m:it.querySelector('.e-mwaka').value,g:it.querySelector('.e-grade').value})});
+  var exp=[]; document.querySelectorAll('.exp-item').forEach(function(it){exp.push({k:it.querySelector('.x-kampuni').value,ti:it.querySelector('.x-title').value,m:it.querySelector('.x-mwaka').value,ma:it.querySelector('.x-maelezo').value})});
+  data.edu=edu; data.exp=exp; data.tpl=tpl; localStorage.setItem('worldCV',JSON.stringify(data)); alert('Saved! Data will stay even if you close the browser.');
 }
 function futaZote(){
-  if(confirm("Una uhakika unataka kufuta kila kitu?")){
-    document.getElementById('cvForm').reset();
-    document.getElementById('cvPreview').style.display = "none";
-    document.getElementById('actionBtns').style.display = "none";
-    window.scrollTo({top:0, behavior:'smooth'});
-  }
+  if(confirm('Delete everything?')){document.getElementById('cvForm').reset();document.getElementById('eduList').innerHTML='';document.getElementById('expList').innerHTML='';addEdu();addExp();document.getElementById('cvPreview').style.display='none';document.getElementById('actionBtns').style.display='none';localStorage.removeItem('worldCV');window.scrollTo({top:0,behavior:'smooth'});}
 }
+// Auto-save kila unapoandika
+document.getElementById('cvForm').addEventListener('input',function(){try{hifadhiSilent();}catch(e){}});
+function hifadhiSilent(){var data={}; ['jina','kazi','mahali','simu','email','linkedin','website','muhtasari','ujuzi'].forEach(function(id){data[id]=get(id)}); localStorage.setItem('worldCV_auto',JSON.stringify(data));}
+addEdu(); addExp();
 </script>
 </body>
-  </html>
+                                                                                                                                                                                                                         </html>
