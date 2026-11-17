@@ -3,112 +3,240 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>CV Maker - Tengeneza CV Bora</title>
+<title>CV MAKER 🇹🇿</title>
 <style>
 *{box-sizing:border-box;font-family:Arial,sans-serif}
-body{margin:0;background:#f1f5f9;padding:12px}
-.header{background:#0f172a;color:#fff;padding:18px;border-radius:12px;text-align:center}
-.header h1{margin:0;font-size:22px}
-.header p{margin:5px 0 0;opacity:.8;font-size:14px}
-.card{background:#fff;padding:16px;border-radius:12px;margin-top:12px;box-shadow:0 2px 8px rgba(0,0,0,.08)}
-.card h2{font-size:16px;margin:0 0 12px;color:#0f172a;border-left:4px solid #facc15;padding-left:8px}
-label{font-size:13px;font-weight:bold;display:block;margin-top:10px}
-input,textarea,select{width:100%;padding:11px;border:1px solid #cbd5e1;border-radius:8px;margin-top:4px;font-size:14px}
-textarea{height:60px}
-button{width:100%;padding:14px;border:none;border-radius:10px;font-weight:bold;font-size:16px;cursor:pointer;margin-top:10px}
-.btn-blue{background:#2563eb;color:#fff}
-.btn-green{background:#16a34a;color:#fff}
-.btn-red{background:#dc2626;color:#fff}
-#cvPreview{background:#fff;padding:20px;border-radius:12px;margin-top:12px;display:none}
-.cv-name{font-size:24px;font-weight:bold;text-align:center;margin:0}
-.cv-title{text-align:center;color:#2563eb;font-weight:bold;margin:4px 0}
-.cv-contact{text-align:center;font-size:13px;color:#555}
-.cv-sec{font-size:14px;font-weight:bold;background:#0f172a;color:#fff;padding:6px 10px;margin-top:16px;border-radius:6px}
-.cv-text{font-size:14px;line-height:1.5;white-space:pre-wrap}
-.pay-box{background:#fef9c3;border:2px dashed #eab308;padding:14px;border-radius:10px;text-align:center;margin-top:12px}
-.pay-option{background:#fff;border:2px solid #e5e7eb;border-radius:10px;padding:12px;margin-top:10px;text-align:left;cursor:pointer}
-.pay-option.selected{border-color:#16a34a;background:#f0fdf4}
-.pay-option b{font-size:16px}
-@media print{body *{visibility:hidden}#cvPreview,#cvPreview *{visibility:visible}#cvPreview{position:absolute;left:0;top:0;width:100%}}
+body{background:#f1f5f9;margin:0;padding:10px}
+.container{max-width:650px;margin:auto}
+.header{background:#0f172a;color:#fff;text-align:center;padding:20px;border-radius:12px}
+.header h1{margin:0;font-size:26px}
+.header p{margin:5px 0 0;color:#cbd5e1}
+.card{background:#fff;padding:16px;border-radius:12px;margin-top:12px;box-shadow:0 2px 8px rgba(0,0,0,.06)}
+.card h2{font-size:18px;margin:0 0 12px;border-left:5px solid #facc15;padding-left:8px;color:#0f172a}
+label{font-weight:bold;font-size:14px;display:block;margin:12px 0 5px}
+input,textarea,select{width:100%;padding:12px;border:1px solid #cbd5e1;border-radius:10px;font-size:15px;outline:none}
+input:focus,textarea:focus{border-color:#2563eb}
+textarea{min-height:70px;resize:vertical}
+.btn-main{width:100%;background:#2563eb;color:#fff;border:none;padding:15px;font-size:18px;font-weight:bold;border-radius:12px;margin-top:15px;cursor:pointer}
+.btn-main:active{transform:scale(.98)}
+.btn-row{display:flex;gap:10px;margin-top:10px}
+.btn-print{flex:1;background:#16a34a;color:#fff;border:none;padding:12px;border-radius:10px;font-weight:bold;cursor:pointer}
+.btn-clear{flex:1;background:#ef4444;color:#fff;border:none;padding:12px;border-radius:10px;font-weight:bold;cursor:pointer}
+#cvPreview{display:none;background:#fff;padding:22px;border-radius:12px;margin-top:15px;border:2px solid #0f172a}
+.cv-top{border-bottom:3px solid #facc15;padding-bottom:10px}
+.cv-top h2{font-size:26px;margin:0;text-transform:uppercase}
+.cv-top p{margin:6px 0 0;color:#475569;font-size:14px}
+.cv-sec{margin-top:16px}
+.cv-sec h3{font-size:16px;margin:0 0 6px;color:#0f172a;border-bottom:1px solid #e2e8f0;padding-bottom:4px}
+.cv-sec p,.cv-sec li{font-size:14.5px;line-height:1.6;color:#334155}
+ul{padding-left:18px;margin:6px 0}
+@media print{body{background:#fff}.container{max-width:100%} .header,.card,.btn-main,.btn-row{display:none!important} #cvPreview{display:block!important;border:none;margin:0;padding:0}}
 </style>
 </head>
 <body>
-
+<div class="container">
 <div class="header">
 <h1>CV MAKER 🇹🇿</h1>
 <p>Tengeneza CV Bora kwa Dakika 5 - Bila Stress</p>
 </div>
 
-<!-- 1. TAARIFA BINAFSI -->
+<form id="cvForm" onsubmit="return false;">
 <div class="card">
 <h2>1. Taarifa Binafsi</h2>
-<label>Jina Kamili *</label><input id="jina" placeholder="Mf: Suleimani Karisha">
-<label>Kazi Unayoomba *</label><input id="kazi" placeholder="Mf: Mhasibu / Muuzaji / Dereva">
-<label>Namba ya Simu *</label><input id="simu" placeholder="Mf: 0746 796 744">
-<label>Email</label><input id="email" placeholder="Mf: jina@gmail.com">
-<label>Mahali Unapoishi *</label><input id="mji" placeholder="Mf: Mwanza">
+<label>Jina Kamili *</label>
+<input id="jina" placeholder="Mf: Jackson Mugeta">
+<label>Kazi Unayoomba *</label>
+<input id="kazi" placeholder="Mf: Muuzaji / Mhasibu / IT">
+<label>Namba ya Simu *</label>
+<input id="simu" placeholder="Mf: 0788000000">
+<label>Email</label>
+<input id="email" placeholder="Mf: jackson@gmail.com">
+<label>Mahali Unapoishi *</label>
+<input id="mahali" placeholder="Mf: Tanga">
 </div>
 
-<!-- 2. MUHTASARI -->
 <div class="card">
 <h2>2. Muhtasari Mfupi - Kuhusu Wewe</h2>
 <label>Andika sentensi 2 kuhusu wewe (mfumo atakusaidia kama ukiacha wazi)</label>
 <textarea id="muhtasari" placeholder="Mf: Nina uzoefu wa miaka 2 kwenye mauzo, ni mchapakazi na mwenye nidhamu..."></textarea>
 </div>
 
-<!-- 3. ELIMU -->
 <div class="card">
 <h2>3. Elimu</h2>
-<label>Shule / Chuo</label><input id="shule" placeholder="Mf: Chuo Kikuu cha Dar es Salaam">
-<label>Umesoma Nini?</label><input id="masomo" placeholder="Mf: Diploma ya Uhasibu">
-<label>Mwaka Ulianza - Ulimailiza</label><input id="miakaElimu" placeholder="Mf: 2020 - 2023">
+<label>Shule / Chuo</label>
+<input id="shule" placeholder="Mf: Chuo cha ...">
+<label>Umesoma Nini?</label>
+<input id="elimu" placeholder="Mf: Degree Computer">
+<label>Mwaka Ulianza - Ulimaliza</label>
+<input id="mwakaElimu" placeholder="Mf: 2020-2023">
 </div>
 
-<!-- 4. UZOEFU -->
 <div class="card">
 <h2>4. Uzoefu wa Kazi (Kama Huna, Acha Wazi)</h2>
-<label>Kampuni / Sehemu</label><input id="kampuni" placeholder="Mf: Duka la Simu Mwanza">
-<label>Kazi Uliyokuwa Unafanya</label><input id="cheo" placeholder="Mf: Muuzaji">
-<label>Mwaka Ulianza - Uliisha</label><input id="miakaKazi" placeholder="Mf: 2022 - 2024">
-<label>Ulikuwa Unafanya Nini Hapo?</label><textarea id="majukumu" placeholder="Mf: Kuuza, kuweka hesabu, kuhudumia wateja..."></textarea>
+<label>Kampuni / Sehemu</label>
+<input id="kampuni" placeholder="Mf: Duka la Simu Mwanza">
+<label>Kazi Uliyokuwa Unafanya</label>
+<input id="kaziUzoefu" placeholder="Mf: Muuzaji">
+<label>Mwaka Ulianza - Uliisha</label>
+<input id="mwakaKazi" placeholder="Mf: 2022 - 2024">
+<label>Ulikuwa Unafanya Nini Hapo?</label>
+<textarea id="maelezoKazi" placeholder="Mf: Kuuza, kuweka hesabu, kuhudumia wateja..."></textarea>
 </div>
 
-<!-- 5. UJUZI -->
 <div class="card">
 <h2>5. Ujuzi - Unajua Nini?</h2>
-<label>Chagua / Andika (tenganisha kwa koma)</label><input id="ujuzi" placeholder="Mf: Kompyuta, Kiingereza, Kuuza, Kuendesha Gari">
+<label>Chagua / Andika (tenganisha kwa koma)</label>
+<input id="ujuzi" placeholder="Mf: Kompyuta, Kuuza, Hesabu" value="Kompyuta">
 </div>
 
-<!-- 6. VYETI -->
 <div class="card">
 <h2>6. Vyeti na Mafunzo (Kama Unavyo)</h2>
-<label>Vyeti</label><input id="vyeti" placeholder="Mf: Cheti cha Kompyuta, Mafunzo ya Ujasiriamali">
+<label>Vyeti</label>
+<input id="vyeti" placeholder="Mf: Cheti cha kompyuta">
 </div>
 
-<!-- 7. LUGHA -->
 <div class="card">
 <h2>7. Lugha</h2>
 <label>Kiswahili</label>
-<select id="swahili"><option>Vizuri Sana</option><option>Kiasi</option><option>Kidogo</option></select>
+<select id="swahili">
+<option>Vizuri Sana</option><option>Vizuri</option><option>Kiasi</option><option>Kidogo</option>
+</select>
 <label>Kiingereza</label>
-<select id="english"><option>Kiasi</option><option>Vizuri Sana</option><option>Kidogo</option></select>
+<select id="english">
+<option>Kiasi</option><option>Vizuri Sana</option><option>Vizuri</option><option>Kidogo</option>
+</select>
 </div>
 
-<!-- 8. MAREJEO -->
 <div class="card">
 <h2>8. Marejeo - Watu 2</h2>
-<label>Mtu wa 1 - Jina</label><input id="ref1" placeholder="Mf: Mwalimu John">
-<label>Mtu wa 1 - Namba / Yeye ni Nani?</label><input id="ref1b" placeholder="Mf: 0755 000 000 - Mwalimu Wangu">
-<label>Mtu wa 2 - Jina</label><input id="ref2" placeholder="Mf: Bosi Peter">
-<label>Mtu wa 2 - Namba / Yeye ni Nani?</label><input id="ref2b" placeholder="Mf: 0765 000 000 - Bosi Wangu wa Zamani">
+<label>Mtu wa 1 - Jina</label>
+<input id="ref1Jina" placeholder="Mf: Mwalimu ...">
+<label>Mtu wa 1 - Namba / Yeye ni Nani?</label>
+<input id="ref1Namba" placeholder="Mf: 0746797687 mwalimu">
+<label>Mtu wa 2 - Jina</label>
+<input id="ref2Jina" placeholder="Mf: ...">
+<label>Mtu wa 2 - Namba / Yeye ni Nani?</label>
+<input id="ref2Namba" placeholder="Mf: 0788991919 mwalimu">
 </div>
 
-<button class="btn-blue" onclick="tengeneza()">ONA CV YANGU 👁️</button>
+<button type="button" class="btn-main" onclick="tengenezaCV()">ONA CV YANGU 👁️</button>
 
 <div id="cvPreview"></div>
+<div class="btn-row" id="actionBtns" style="display:none;">
+<button type="button" class="btn-print" onclick="window.print()">🖨️ Pakua / Print PDF</button>
+<button type="button" class="btn-clear" onclick="futaZote()">🗑️ Futa Zote</button>
+</div>
+</form>
+</div>
 
-<div id="payArea" style="display:none">
-<div class="pay-box">
-<b style="font-size:18px">Kupakua CV 1 = 2000 Tsh</b><br>
-<span style="font-size:13px">Chagua njia ya kulipa, lipa, kisha weka Namba ya Muam
-  
+<script>
+function get(id){
+  var el = document.getElementById(id);
+  return el ? el.value.trim() : "";
+}
+function escapeHtml(t){
+  return t.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
+}
+function tengenezaCV(){
+  try{
+    var jina = get('jina');
+    var kazi = get('kazi');
+    var simu = get('simu');
+    var email = get('email');
+    var mahali = get('mahali');
+
+    if(!jina || !kazi || !simu || !mahali){
+      alert("Tafadhali jaza: Jina Kamili, Kazi Unayoomba, Namba ya Simu na Mahali Unapoishi");
+      document.getElementById('jina').focus();
+      return;
+    }
+
+    var muhtasari = get('muhtasari');
+    if(!muhtasari){
+      muhtasari = "Mimi ni " + escapeHtml(jina) + ", ninaomba nafasi ya " + escapeHtml(kazi) + ". Ni mtu mchapakazi, mwenye nidhamu, anayependa kujifunza na kufanya kazi kwa bidii ili kufikia malengo ya kampuni.";
+    } else {
+      muhtasari = escapeHtml(muhtasari);
+    }
+
+    var shule = get('shule');
+    var elimu = get('elimu');
+    var mwakaElimu = get('mwakaElimu');
+    var kampuni = get('kampuni');
+    var kaziUzoefu = get('kaziUzoefu');
+    var mwakaKazi = get('mwakaKazi');
+    var maelezoKazi = get('maelezoKazi');
+    var ujuzi = get('ujuzi');
+    var vyeti = get('vyeti');
+    var swahili = get('swahili');
+    var english = get('english');
+    var ref1Jina = get('ref1Jina');
+    var ref1Namba = get('ref1Namba');
+    var ref2Jina = get('ref2Jina');
+    var ref2Namba = get('ref2Namba');
+
+    var ujuziHtml = "";
+    if(ujuzi){
+      var parts = ujuzi.split(",");
+      ujuziHtml = "<ul>";
+      for(var i=0;i<parts.length;i++){
+        if(parts[i].trim()) ujuziHtml += "<li>" + escapeHtml(parts[i].trim()) + "</li>";
+      }
+      ujuziHtml += "</ul>";
+    } else {
+      ujuziHtml = "<p>Kompyuta, Mawasiliano, Kufanya kazi kwa timu</p>";
+    }
+
+    var elimuHtml = "";
+    if(shule || elimu){
+      elimuHtml = "<div class='cv-sec'><h3>ELIMU</h3><p><b>" + escapeHtml(elimu || "Elimu") + "</b><br>" + escapeHtml(shule) + " | " + escapeHtml(mwakaElimu) + "</p></div>";
+    }
+
+    var uzoefuHtml = "";
+    if(kampuni || kaziUzoefu){
+      uzoefuHtml = "<div class='cv-sec'><h3>UZOEFU WA KAZI</h3><p><b>" + escapeHtml(kaziUzoefu) + "</b> - " + escapeHtml(kampuni) + " (" + escapeHtml(mwakaKazi) + ")<br>" + escapeHtml(maelezoKazi) + "</p></div>";
+    }
+
+    var vyetiHtml = "";
+    if(vyeti){
+      vyetiHtml = "<div class='cv-sec'><h3>VYETI NA MAFUNZO</h3><p>" + escapeHtml(vyeti) + "</p></div>";
+    }
+
+    var marejeoHtml = "";
+    if(ref1Jina || ref2Jina){
+      marejeoHtml = "<div class='cv-sec'><h3>MAREJEO</h3>";
+      if(ref1Jina) marejeoHtml += "<p><b>" + escapeHtml(ref1Jina) + "</b><br>" + escapeHtml(ref1Namba) + "</p>";
+      if(ref2Jina) marejeoHtml += "<p><b>" + escapeHtml(ref2Jina) + "</b><br>" + escapeHtml(ref2Namba) + "</p>";
+      marejeoHtml += "</div>";
+    }
+
+    var html = "";
+    html += "<div class='cv-top'><h2>" + escapeHtml(jina) + "</h2><p><b>" + escapeHtml(kazi) + "</b><br>" + escapeHtml(simu) + (email ? " | " + escapeHtml(email) : "") + " | " + escapeHtml(mahali) + "</p></div>";
+    html += "<div class='cv-sec'><h3>KUHUSU MIMI</h3><p>" + muhtasari + "</p></div>";
+    html += elimuHtml;
+    html += uzoefuHtml;
+    html += "<div class='cv-sec'><h3>UJUZI</h3>" + ujuziHtml + "</div>";
+    html += vyetiHtml;
+    html += "<div class='cv-sec'><h3>LUGHA</h3><p>Kiswahili: " + escapeHtml(swahili) + "<br>Kiingereza: " + escapeHtml(english) + "</p></div>";
+    html += marejeoHtml;
+
+    var preview = document.getElementById('cvPreview');
+    preview.innerHTML = html;
+    preview.style.display = "block";
+    document.getElementById('actionBtns').style.display = "flex";
+    preview.scrollIntoView({behavior:'smooth'});
+  } catch(e){
+    alert("Kuna tatizo: " + e.message);
+    console.log(e);
+  }
+}
+function futaZote(){
+  if(confirm("Una uhakika unataka kufuta kila kitu?")){
+    document.getElementById('cvForm').reset();
+    document.getElementById('cvPreview').style.display = "none";
+    document.getElementById('actionBtns').style.display = "none";
+    window.scrollTo({top:0, behavior:'smooth'});
+  }
+}
+</script>
+</body>
+  </html>
